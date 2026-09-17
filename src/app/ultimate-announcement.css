@@ -1,0 +1,50 @@
+.ultimate-announcement {
+  position: fixed; inset: 0; z-index: 80; pointer-events: none;
+  display: grid; place-items: center; overflow: hidden;
+  background: #02080ec9;
+  animation: cutin-veil var(--cutin-duration) both paused;
+  animation-delay: var(--cutin-time);
+}
+.ultimate-cutin { position: relative; width: min(1320px, 96vw); height: clamp(240px, 30vw, 330px); isolation: isolate; }
+.ultimate-cutin-plate {
+  position: absolute; inset: 0; z-index: -1; transform: skewX(-12deg);
+  border-block: 1px solid color-mix(in srgb, var(--ultimate-color) 80%, #fff);
+  background-image: linear-gradient(100deg, #060c15ad, color-mix(in srgb, var(--ultimate-color) 42%, #07101c) 70%, #060c15c9), var(--ultimate-art);
+  background-size: cover; background-position: center;
+  box-shadow: 0 0 50px color-mix(in srgb, var(--ultimate-color) 35%, transparent);
+  animation: cutin-panel var(--cutin-duration) both paused; animation-delay: var(--cutin-time);
+}
+.ultimate-cutin-portrait {
+  position: absolute; left: -2%; bottom: -24%; width: 52%; height: 162%; object-fit: contain; object-position: bottom;
+  filter: drop-shadow(0 0 22px color-mix(in srgb, var(--ultimate-color) 48%, transparent));
+  mask-image: linear-gradient(#000 85%, transparent 100%);
+  animation: cutin-portrait var(--cutin-duration) both paused; animation-delay: var(--cutin-time);
+}
+.ultimate-cutin-copy {
+  position: absolute; inset: 10% 4% 10% 41%; display: flex; flex-direction: column; justify-content: center; text-align: right; container-type: inline-size;
+  animation: cutin-copy var(--cutin-duration) both paused; animation-delay: var(--cutin-time);
+}
+.ultimate-cutin-copy p { color: color-mix(in srgb, var(--ultimate-color) 40%, #fff); font-family: Georgia, serif; font-size: clamp(10px, 2.3cqw, 15px); letter-spacing: .19em; font-weight: 700; margin: 0 0 18px; }
+.ultimate-announcement .ultimate-cutin-copy h2 { color: #fff8e7; font-size: clamp(32px, 12.6cqw, 80px); font-weight: 700; line-height: 1.35; margin: 0; text-shadow: 0 3px 16px #000, 0 0 28px color-mix(in srgb, var(--ultimate-color) 35%, transparent); overflow-wrap: anywhere; text-wrap: balance; }
+.ultimate-cutin-signature { color: #f6e5c0; font-size: clamp(15px, 3cqw, 22px); margin-top: 17px; line-height: 1.6; text-wrap: balance; }
+.ultimate-announcement.compact-announcement .ultimate-cutin-copy h2 { font-size: clamp(28px, 9.5cqw, 64px); }
+.ultimate-cutin-signature strong { color: #fff0ca; font-weight: 600; }
+.ultimate-cutin-signature span { color: color-mix(in srgb, var(--ultimate-color) 30%, #fff); }
+.ultimate-cutin-line { position: absolute; right: 4%; bottom: 8%; width: 51%; height: 1px; background: linear-gradient(90deg, transparent, var(--ultimate-color), #ffedca); }
+@keyframes cutin-veil { 0%, 100% { opacity: 0; } 10%, 86% { opacity: 1; } }
+@keyframes cutin-panel { 0% { translate: -18% 0; } 16%, 88% { translate: 0 0; } 100% { translate: 8% 0; } }
+@keyframes cutin-portrait { 0% { translate: -12% 0; opacity: 0; } 18%, 88% { translate: 0 0; opacity: 1; } 100% { translate: -3% 0; opacity: 0; } }
+@keyframes cutin-copy { 0%, 6% { translate: 8% 0; opacity: 0; } 22%, 88% { translate: 0 0; opacity: 1; } 100% { opacity: 0; } }
+@media (max-width: 600px) {
+  .ultimate-cutin { width: 96vw; height: 290px; }
+  .ultimate-cutin-portrait { width: 94%; height: 145%; left: -14%; bottom: 17%; mask-image: linear-gradient(#000 65%, transparent 100%); }
+  .ultimate-cutin-copy { inset: auto 3% 10% 3%; text-align: right; padding: 12px; background: linear-gradient(90deg, #07101c33, #07101cd9 65%); }
+  .ultimate-announcement .ultimate-cutin-copy h2 { font-size: clamp(30px, 12.6cqw, 58px); }
+  .ultimate-cutin-copy p { margin-bottom: 10px; letter-spacing: .12em; }
+  .ultimate-cutin-signature { margin-top: 10px; font-size: 13px; }
+  .ultimate-cutin-line { bottom: 8%; width: 72%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ultimate-announcement, .ultimate-cutin-plate, .ultimate-cutin-portrait, .ultimate-cutin-copy { animation: none; }
+}
+.ultimate-announcement.reduced-motion, .ultimate-announcement.reduced-motion * { animation: none; }

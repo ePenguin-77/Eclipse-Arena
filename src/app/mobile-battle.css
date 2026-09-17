@@ -1,0 +1,142 @@
+/* Arena first: health shares the existing ability cards below the arena. */
+.game-shell.screen-battle {
+  width: min(100%, calc(100dvh * .64), 620px); max-width: none;
+  height: 100vh; height: 100dvh; min-height: 0; margin: 0 auto;
+  padding: max(4px, env(safe-area-inset-top, 0px)) max(8px, env(safe-area-inset-right, 0px)) max(4px, env(safe-area-inset-bottom, 0px)) max(8px, env(safe-area-inset-left, 0px));
+  display: flex; flex-direction: column; background: linear-gradient(180deg, #15292e, #101f26); border-inline: 1px solid #425a50;
+}
+.screen-battle .masthead { flex: 0 0 30px; min-height: 30px; justify-content: center; border: 0; }
+.screen-battle .masthead nav, .screen-battle .game-footer { display: none; }
+.screen-battle .brand-home { min-height: 28px; gap: 6px; font-size: 12px; letter-spacing: 2px; }
+.screen-battle .brand-home b { display: inline; font-size: 12px; letter-spacing: 2px; }
+.screen-battle .brand-home img { width: 25px; height: 25px; }
+.screen-battle #main { flex: 1; min-height: 0; display: flex; flex-direction: column; }
+.game-shell.screen-battle .battle-heading { flex: 0 0 34px; min-height: 34px; margin: 0 2px 5px; gap: 8px; }
+.screen-battle .battle-heading .eyebrow { display: none; }
+.screen-battle .battle-heading h1 { font-size: 13px; }
+.screen-battle .battle-clock { display: flex; align-items: baseline; gap: 4px; font-size: 17px; }
+.screen-battle .battle-clock small, .screen-battle .battle-clock span { font-size: 9px; }
+.game-shell.screen-battle .battle-layout { flex: 1; min-height: 0; display: flex; flex-direction: column; align-items: stretch; gap: 6px; padding: 0; }
+.game-shell.screen-battle .battle-stage { order: 0; flex: 1; min-height: 0; width: 100%; display: flex; flex-direction: column; border: 1px solid #70806a; border-radius: 5px; padding: 0; background: #0c1e24; }
+.game-shell.screen-battle .battle-stage .arena-viewport { flex: 1; min-height: 0; height: auto; aspect-ratio: auto; position: relative; }
+.screen-battle .arena-viewport canvas { position: absolute; inset: 0; }
+.screen-battle .visual-preview-notice { font-size: 10px; padding: 3px 8px; }
+.game-shell.screen-battle .battle-abilities { order: 1; flex: 0 0 auto; width: 100%; padding: 6px; border: 1px solid #65725b; border-radius: 6px; background: #1b3032; }
+.screen-battle .battle-abilities .combat-heading, .screen-battle .battle-abilities .combat-footnote, .screen-battle .battle-abilities .quiet-option { display: none; }
+.game-shell.screen-battle .battle-abilities .fighter-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 5px; align-items: stretch; }
+.game-shell.screen-battle .battle-abilities .fighter-card { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 4px; align-content: start; padding: 5px 7px; border-top-width: 2px; border-radius: 4px; }
+.screen-battle .battle-abilities .fighter-artwork { opacity: .24; width: 130px; height: 130px; right: -12px; top: -20px; }
+.game-shell.screen-battle .battle-abilities .fighter-heading { min-height: 20px; min-width: 0; flex-wrap: nowrap; gap: 4px; }
+.screen-battle .battle-abilities .fighter-heading strong { font-size: 12px; line-height: 20px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.screen-battle .battle-abilities .fighter-heading small { display: none; }
+.screen-battle .battle-abilities .fighter-letter { font-size: 11px; }
+.game-shell.screen-battle .battle-abilities .fighter-health { margin: 0; align-items: center; justify-content: flex-end; }
+.screen-battle .battle-abilities .fighter-health > span { display: none; }
+.screen-battle .battle-abilities .fighter-health strong { font-size: 16px; line-height: 20px; }
+.screen-battle .battle-abilities .fighter-health strong > small { font-size: 9px; }
+.game-shell.screen-battle .battle-abilities .fighter-card progress { grid-column: 1 / -1; margin-top: 3px; height: 4px; }
+.game-shell.screen-battle .battle-abilities .fighter-skills-inline { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr; grid-auto-flow: row; margin-top: 4px; gap: 3px; }
+.game-shell.screen-battle .battle-abilities .fighter-skills-inline .fighter-skill { min-width: 0; min-height: 28px; padding: 3px 4px 7px; display: flex; align-items: center; justify-content: space-between; gap: 4px; border-color: #3c5755; background: #172a2eaa; }
+.screen-battle .battle-abilities .fighter-skills-inline .fighter-skill > span:first-child { font-size: 11px; line-height: 1.4; }
+.screen-battle .battle-abilities .fighter-skills-inline .fighter-skill small { font-size: 9px; }
+.screen-battle .battle-abilities .skill-range-label, .screen-battle .battle-abilities .skill-cooldown-bar { display: none; }
+.screen-battle .battle-abilities .fighter-skill.ready { border-color: #688774; }
+.screen-battle .battle-abilities .fighter-skill.casting { border-color: #e3c77a; }
+.skill-ready-track { position: absolute; bottom: 2px; left: 4px; right: 4px; height: 3px; border-radius: 2px; overflow: hidden; background: #35474a; }
+.skill-ready-track > span { display: block; height: 100%; background: var(--body-color, #bbce9d); }
+.game-shell.screen-battle .battle-controls { order: 2; flex: 0 0 auto; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); padding: 0; gap: 6px; border: 0; background: transparent; }
+.screen-battle .battle-controls button { min-height: 36px; padding: 5px 4px; font-size: 11px; }
+.screen-battle .battle-controls kbd { display: none; }
+.screen-battle .developer-drawer { position: fixed; z-index: 15; top: max(4px, env(safe-area-inset-top, 0px)); right: 8px; width: auto; margin: 0; border: 0; }
+.screen-battle .developer-toggle { min-height: 26px; padding: 2px 4px; font-size: 9px; gap: 3px; }
+.screen-battle .developer-toggle span { font-size: 14px; }
+.screen-battle .developer-drawer:has(#developer-tools) { inset: 4px 6px; width: auto; padding: 8px; overflow: auto; overscroll-behavior: contain; background: #112126; border: 1px solid #597062; border-radius: 7px; box-shadow: 0 0 0 100vmax #071219b3; }
+.screen-battle .developer-drawer:has(#developer-tools) .developer-toggle { position: sticky; top: -8px; z-index: 2; background: #112126; min-height: 40px; }
+.screen-battle .developer-grid, .screen-battle .developer-grid .inspector-panel { grid-template-columns: 1fr; }
+@media (max-width: 650px) {
+  .game-shell.screen-battle { width: 100%; }
+  .screen-battle .brand-home { margin-right: 80px; }
+  .screen-battle .battle-abilities .fighter-health strong > small { display: none; }
+}
+.portrait-guard { position: fixed; inset: 0; z-index: 100; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 24px; background: radial-gradient(ellipse at top, #25403e, #101e26 75%); color: #eddfc1; }
+.portrait-guard h1 { font-size: 24px; margin: 14px 0 6px; }
+.portrait-guard p { margin: 6px 0; color: #b9ccbf; }
+.portrait-device { width: 40px; height: 62px; border: 2px solid #cdb67b; border-radius: 8px; display: grid; place-items: center; font-size: 28px; }
+.portrait-guard .portrait-pause { font-size: 13px; color: #dfc58f; }
+body:has(.portrait-guard) { overflow: hidden; }
+
+
+.game-shell.screen-battle .battle-abilities .ability-owner-card { padding: 5px 7px; }
+.screen-battle .battle-abilities .ability-owner { grid-column: 1; min-width: 0; margin: 0; display: flex; gap: 5px; align-items: center; font-size: 11px; font-weight: 500; line-height: 16px; color: #b9cbc0; }
+.ability-owner > span { color: var(--body-color); font-weight: 700; }
+.game-shell.screen-battle .battle-abilities .fighter-skills-inline { margin-top: 3px; }
+.game-shell.screen-battle .battle-abilities .skill-ready-track { height: 4px; }
+
+.game-shell.screen-battle .battle-abilities .ability-owner-card progress { height: 5px; margin-top: 3px; }
+@media (min-width: 380px) {
+  .screen-battle .battle-abilities .fighter-health strong > small { display: inline; }
+}
+
+/* Compact reference layout: identity + numeric HP on the left, small skill gauges on the right. */
+.game-shell.screen-battle .battle-abilities .ability-owner-card { grid-template-columns: minmax(0, 1fr) 66px; align-items: center; align-content: center; column-gap: 7px; padding: 5px 6px; }
+.fighter-identity { min-width: 0; display: flex; align-items: center; gap: 6px; }
+.fighter-slot-badge { flex: 0 0 22px; display: grid; place-items: center; align-self: stretch; min-height: 34px; border-radius: 3px; color: var(--body-color); background: #38515399; font-size: 16px; font-weight: 700; }
+.fighter-identity-copy { min-width: 0; }
+.screen-battle .battle-abilities .fighter-identity .ability-owner { display: block; font-size: 11px; line-height: 15px; overflow-wrap: anywhere; }
+.screen-battle .battle-abilities .fighter-ko { margin-left: 4px; color: #aab2b4; font-size: 9px; }
+.game-shell.screen-battle .battle-abilities .fighter-identity .fighter-health { justify-content: flex-start; gap: 4px; line-height: 16px; }
+.screen-battle .battle-abilities .fighter-identity .fighter-health > span { display: inline; font-size: 9px; }
+.screen-battle .battle-abilities .fighter-identity .fighter-health strong { font-size: 12px; line-height: 16px; white-space: nowrap; }
+.screen-battle .battle-abilities .fighter-identity .fighter-health small { display: inline; font-size: 9px; }
+.game-shell.screen-battle .battle-abilities .fighter-side-meters { grid-column: 2; margin: 0; gap: 2px; align-self: center; }
+.screen-battle .battle-abilities .ability-side-meter { min-width: 0; min-height: 26px; padding: 2px 3px; border: 1px solid transparent; border-radius: 3px; background: #10252a99; text-align: left; }
+.ability-side-meter:disabled { opacity: 1; }
+.ability-side-meter:focus-visible { outline: 2px solid #efda9c; outline-offset: 1px; }
+.meter-caption { display: flex; justify-content: space-between; align-items: center; gap: 2px; color: #bdd0c2; font-size: 9px; line-height: 12px; }
+.meter-caption > span { min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.meter-caption small { font-size: 8px; font-variant-numeric: tabular-nums; }
+.side-charge-track { display: block; height: 7px; margin-top: 2px; border: 1px solid #6b7975; border-radius: 3px; overflow: hidden; background: #34424b; }
+.side-charge-track > span { display: block; height: 100%; background: var(--body-color, #b6d1c0); }
+.ability-side-meter.casting .side-charge-track { border-color: #f2d585; }
+.ability-side-meter.defeated .meter-caption { color: #859295; }
+@media (max-width: 420px) {
+  .game-shell.screen-battle .battle-abilities .ability-owner-card { grid-template-columns: minmax(0, 1fr) 56px; column-gap: 4px; padding: 4px; }
+  .fighter-identity { gap: 4px; }
+  .fighter-slot-badge { flex-basis: 16px; font-size: 13px; }
+}
+@media (max-width: 360px) {
+  .screen-battle .battle-abilities .fighter-identity .fighter-health small { display: none; }
+}
+
+/* Two future-facing slots: current basic abilities above, reserved ultimate below. */
+.game-shell.screen-battle .battle-abilities .ability-owner-card {
+  grid-template-columns: minmax(0, 1fr) 88px; column-gap: 8px; min-height: 66px; padding: 6px 8px;
+  border: 1px solid color-mix(in srgb, var(--body-color) 58%, #253f48); border-top: 2px solid var(--body-color);
+  background: linear-gradient(110deg, color-mix(in srgb, var(--body-color) 40%, #12272d), #17282f 72%);
+  box-shadow: inset 3px 0 12px color-mix(in srgb, var(--body-color) 13%, transparent);
+}
+.screen-battle .battle-abilities .ability-owner-card::after { background: linear-gradient(90deg, #10232bc9 0%, #10232b50 52%, #10232b20 100%); }
+.screen-battle .battle-abilities .ability-owner-card .fighter-artwork { width: 172px; height: 172px; right: calc(55% - 86px); top: -23px; opacity: .95; filter: saturate(1.12); }
+.screen-battle .battle-abilities .ability-owner-card.defeated { border-color: #58666b; }
+.screen-battle .battle-abilities .ability-owner-card.defeated .fighter-artwork { opacity: .45; filter: grayscale(.7); }
+.screen-battle .battle-abilities .fighter-identity .ability-owner { font-size: 12px; line-height: 18px; font-weight: 600; color: var(--body-color); text-shadow: 0 1px 4px #081820; }
+.fighter-identity-copy { padding: 2px 0; }
+.game-shell.screen-battle .battle-abilities .fighter-identity .fighter-health { margin-top: 2px; }
+.battle-skill-slots { grid-column: 2; display: grid; grid-template-rows: 20px 30px; gap: 3px; min-width: 0; }
+.basic-skill-slot { min-width: 0; }
+.game-shell.screen-battle .battle-abilities .basic-skill-slot .fighter-side-meters { display: grid; grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); height: 20px; gap: 3px; }
+.screen-battle .battle-abilities .ability-side-meter { display: flex; align-items: center; height: 20px; min-height: 20px; padding: 2px 3px; border: 0; background: transparent; box-shadow: none; }
+.screen-battle .battle-abilities .ability-side-meter .side-charge-track { width: 100%; margin: 0; }
+.meter-caption { justify-content: flex-end; }
+.side-charge-track { border-color: color-mix(in srgb, var(--body-color) 58%, #526568); }
+.ultimate-skill-slot { display: grid; grid-template-columns: minmax(0, 1fr); grid-template-rows: 16px 7px; align-content: end; gap: 2px; padding: 0 3px 3px; background: transparent; border: 0; }
+.ultimate-skill-slot .side-charge-track { height: 7px; margin: 0; border-color: #8c82586e; background: #30353999; }
+.ultimate-name-placeholder { min-width: 0; color: #d6cba6; font-size: 10px; line-height: 16px; text-align: left; }
+.empty-basic-slot { display: flex; align-items: center; height: 20px; padding: 3px; background: transparent; }
+.empty-basic-slot .side-charge-track { width: 100%; margin: 0; }
+@media (max-width: 420px) {
+  .game-shell.screen-battle .battle-abilities .ability-owner-card { grid-template-columns: minmax(0, 1fr) 64px; gap: 5px; padding: 5px 6px; }
+  .screen-battle .battle-abilities .fighter-identity .ability-owner { font-size: 11px; line-height: 16px; }
+}
+
+.screen-battle .battle-abilities .fighter-identity .ability-owner { background: linear-gradient(100deg, #fff5e7, var(--body-color) 75%); background-clip: text; -webkit-background-clip: text; color: transparent; }

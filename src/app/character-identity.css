@@ -1,0 +1,11 @@
+.character-discipline { color: #d8c58e; font-size: 12px; line-height: 1.6; margin: 7px 0 10px; }
+.confirm-epithet { color: #ccb989; font-size: 10px; margin-top: 6px; }
+.result-identity { color: #d2bc86; font-size: 14px; margin: 2px 0 16px; }
+.result-roster .result-character-path { color: #c7bc9c; font-size: 10px; line-height: 1.5; margin: 3px 0; }
+.screen-battle .basic-charge-label { font-size: 9px; letter-spacing: -.2px; }
+@media (max-width: 600px) {
+  .screen-battle :is(.count-3, .count-4) .basic-charge-label { font-size: 6.5px; letter-spacing: -.3px; }
+}
+@media (max-width: 420px) {
+  .screen-battle .count-2 .battle-abilities .fighter-identity .ability-owner { font-size: 10px; }
+}

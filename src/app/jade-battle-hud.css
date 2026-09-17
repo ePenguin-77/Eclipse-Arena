@@ -1,0 +1,167 @@
+/* GPT Image card and gauge skins; live text and charge remain DOM overlays. */
+.screen-battle .fighter-artwork[data-artwork="drunken-portrait-v1"], .screen-battle .fighter-artwork[data-artwork="chain-portrait-v1"] { mask-image: linear-gradient(90deg, #000 48%, #0009 70%, transparent 98%); }
+.game-shell.screen-battle { width: min(100%, 760px); }
+.game-shell.screen-battle .battle-abilities {
+  order: -1; padding: 22px 0 5px; border: 0; background: transparent;
+}
+.game-shell.screen-battle .battle-abilities .fighter-grid { gap: 23px 10px; }
+.game-shell.screen-battle .battle-abilities .ability-owner-card {
+  --hud-card-height: 104px;
+  grid-template-columns: 38% 1fr 35%; column-gap: 0;
+  width: 100%; min-height: var(--hud-card-height); height: var(--hud-card-height); padding: 12px 14px;
+  overflow: visible;
+  border: 0; border-radius: 8px;
+  background: #0b1e22 var(--fighter-backdrop, url('/assets/ui/jade-card-v2.png')) center / 100% var(--fighter-backdrop-height, 100%) no-repeat;
+  box-shadow: none;
+}
+.screen-battle .battle-abilities .ability-owner-card::after { display: none; }
+.screen-battle .battle-abilities .ability-owner-card .fighter-art-stage {
+  position: absolute; z-index: 1; left: 0; right: 0; top: -22px; bottom: 0;
+  overflow: hidden; pointer-events: none; border-radius: 0 0 8px 8px;
+}
+.screen-battle .battle-abilities .ability-owner-card .fighter-artwork {
+  width: calc(var(--hud-card-height) * var(--hud-art-width, 1.9)); height: auto; right: auto; left: 46%; top: -2px;
+  transform: translateX(calc(-1 * var(--hud-art-center-x, 50%))) translateY(calc(var(--hud-card-height) * var(--hud-art-offset-y, 0))); opacity: 1;
+  filter: drop-shadow(0 0 7px var(--aura-color));
+}
+.screen-battle .battle-abilities .ability-owner-card.defeated .fighter-artwork {
+  opacity: .4; filter: grayscale(.8);
+}
+.screen-battle .battle-abilities .fighter-identity { grid-column: 1; align-self: center; }
+.screen-battle .battle-abilities .fighter-identity-copy { width: 100%; padding: 0; }
+.screen-battle .battle-abilities .fighter-identity .ability-owner {
+  color: var(--body-color); background: none; font-size: 16px; line-height: 1.45;
+  font-weight: 600; text-shadow: 0 1px 3px #061411, 0 0 5px #061411;
+}
+.game-shell.screen-battle .battle-abilities .fighter-identity .fighter-health {
+  margin-top: 11px; gap: 3px; color: #f4e7ca; text-shadow: 0 1px 3px #061411;
+}
+.screen-battle .battle-abilities .fighter-identity .fighter-health strong {
+  font-family: Georgia, 'Times New Roman', serif; font-size: 22px; font-weight: 500; line-height: 24px;
+}
+.screen-battle .battle-abilities .fighter-identity .fighter-health strong small { display: inline; font-size: 14px; color: #f4e7ca; text-shadow: 0 1px 3px #061411, 0 0 3px #061411; }
+.screen-battle .battle-abilities .fighter-identity .fighter-health > span { font-family: Georgia, serif; font-size: 13px; }
+.screen-battle .battle-abilities .battle-skill-slots {
+  grid-column: 3; grid-template-rows: 30px 32px; gap: 0; align-self: center;
+}
+.game-shell.screen-battle .battle-abilities .basic-skill-slot .fighter-side-meters { height: 30px; gap: 3px; }
+.screen-battle .battle-abilities .ability-side-meter {
+  height: 30px; min-height: 30px; padding: 0; background: transparent;
+}
+.screen-battle .battle-abilities .side-charge-track {
+  position: relative; height: 14px; margin: 0; border: 1px solid #a48b57; border-radius: 7px;
+  overflow: hidden; background: url('/assets/ui/jade-gauge-v1.png') center / 100% 100% no-repeat;
+  padding: 1px 3px;
+}
+.screen-battle .battle-abilities .side-charge-track > span {
+  height: 100%; border-radius: 6px;
+  background: var(--body-color) url('/assets/ui/jade-energy-v1.png') center / 130px 100%;
+  background-blend-mode: luminosity;
+  transition: width 100ms linear;
+}
+.screen-battle .battle-abilities .ultimate-skill-slot {
+  padding: 0 0 3px; grid-template-rows: 15px 14px; gap: 0;
+}
+.screen-battle .battle-abilities .ultimate-skill-slot .side-charge-track { opacity: .7; }
+.screen-battle .battle-abilities .empty-basic-slot { padding: 0; height: 23px; }
+@media (max-width: 600px) {
+  .game-shell.screen-battle .battle-abilities .ability-owner-card { --hud-card-height: 94px; padding: 9px; }
+  .screen-battle .battle-abilities .fighter-identity .ability-owner { font-size: 13px; }
+  .screen-battle .battle-abilities .fighter-identity .fighter-health strong { font-size: 19px; }
+  .screen-battle .battle-abilities .fighter-identity .fighter-health strong small { font-size: 12px; }
+  .screen-battle .battle-abilities .fighter-identity .fighter-health > span { font-size: 10px; }
+}
+@media (max-width: 420px) {
+  .game-shell.screen-battle .battle-abilities .fighter-grid { column-gap: 6px; }
+  .game-shell.screen-battle .battle-abilities .ability-owner-card { --hud-card-height: 88px; padding: 8px; }
+  .screen-battle .battle-abilities .fighter-identity .ability-owner { font-size: 11px; }
+  .screen-battle .battle-abilities .fighter-identity .fighter-health strong { font-size: 16px; }
+  .screen-battle .battle-abilities .fighter-identity .fighter-health strong small { font-size: 9px; }
+  .screen-battle .battle-abilities .fighter-identity .fighter-health > span { font-size: 8px; }
+  .screen-battle .battle-abilities .ability-owner-card .fighter-artwork { left: 49%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .screen-battle .battle-abilities .side-charge-track > span { transition: none; }
+}
+
+/* Duels reserve less HUD space; zoom preserves the entire card composition. */
+.game-shell.screen-battle .count-2 .battle-abilities {
+  zoom: .88;
+  width: 88%;
+  align-self: center;
+}
+
+/* All match sizes reserve the duel HUD's height, leaving identical arena space. */
+.screen-battle .battle-layout { --duel-card-height: 104px; }
+.game-shell.screen-battle :is(.count-3, .count-4) .battle-abilities {
+  height: calc((var(--duel-card-height) + 27px) * .88);
+  padding: 19.36px 0 4.4px;
+}
+.game-shell.screen-battle :is(.count-3, .count-4) .fighter-grid {
+  height: 100%; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px;
+}
+.game-shell.screen-battle .count-4 .fighter-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.game-shell.screen-battle :is(.count-3, .count-4) .ability-owner-card {
+  --hud-card-height: calc(var(--duel-card-height) * .88);
+  min-height: 0; height: 100%; padding: 8px;
+}
+.screen-battle :is(.count-3, .count-4) .ability-owner-card .fighter-art-stage { top: -19px; }
+.screen-battle :is(.count-3, .count-4) .fighter-identity .ability-owner { font-size: 11px; }
+.screen-battle :is(.count-3, .count-4) .fighter-identity .fighter-health strong { font-size: 16px; }
+.screen-battle :is(.count-3, .count-4) .fighter-identity .fighter-health strong small { font-size: 9px; }
+.screen-battle :is(.count-3, .count-4) .fighter-identity .fighter-health > span { font-size: 8px; }
+@media (max-width: 600px) {
+  .screen-battle .battle-layout { --duel-card-height: 94px; }
+  .game-shell.screen-battle :is(.count-3, .count-4) .battle-abilities { padding: 8px 0 3px; }
+  .game-shell.screen-battle :is(.count-3, .count-4) .fighter-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(2, minmax(0, 1fr)); gap: 7px 6px;
+  }
+  .game-shell.screen-battle :is(.count-3, .count-4) .ability-owner-card {
+    --hud-card-height: calc(((var(--duel-card-height) + 27px) * .88 - 18px) / 2);
+    grid-template-columns: 45% 1fr 32%; padding: 4px 7px;
+  }
+  .screen-battle :is(.count-3, .count-4) .ability-owner-card .fighter-art-stage { top: -6px; }
+  .screen-battle :is(.count-3, .count-4) .ability-owner-card .fighter-artwork { left: 49%; top: -1px; }
+  .screen-battle :is(.count-3, .count-4) .fighter-identity .ability-owner { font-size: 10px; line-height: 1.3; }
+  .game-shell.screen-battle :is(.count-3, .count-4) .fighter-identity .fighter-health { margin-top: 2px; }
+  .screen-battle :is(.count-3, .count-4) .fighter-identity .fighter-health strong { font-size: 12px; line-height: 14px; }
+  .screen-battle :is(.count-3, .count-4) .battle-skill-slots { grid-template-rows: 15px 17px; }
+  .game-shell.screen-battle :is(.count-3, .count-4) .basic-skill-slot .fighter-side-meters,
+  .screen-battle :is(.count-3, .count-4) .ability-side-meter { min-height: 15px; height: 15px; }
+  .screen-battle :is(.count-3, .count-4) .side-charge-track { height: 8px; padding: 1px 2px; }
+  .screen-battle :is(.count-3, .count-4) .ultimate-skill-slot { grid-template-rows: 7px 8px; padding-bottom: 2px; }
+}
+@media (max-width: 420px) {
+  .screen-battle .battle-layout { --duel-card-height: 88px; }
+  .screen-battle :is(.count-3, .count-4) .fighter-identity .ability-owner { font-size: 9px; }
+}
+
+/* Phase 10.1: actual ultimate data occupies the existing reserved row. */
+.screen-battle .battle-abilities button.ultimate-meter {
+  display: grid; width: 100%; min-width: 0; min-height: 0; height: auto;
+  border: 0; border-radius: 0; margin: 0; background: transparent; box-shadow: none;
+  color: var(--body-color); opacity: 1; text-align: left;
+}
+.screen-battle .battle-abilities .ultimate-skill-name {
+  display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  font-size: 8px; line-height: 14px; font-weight: 600;
+}
+.screen-battle .battle-abilities .ultimate-meter .side-charge-track { opacity: 1; }
+.screen-battle .battle-abilities .ultimate-meter.empowered .side-charge-track,
+.screen-battle .battle-abilities .ultimate-meter.casting .side-charge-track {
+  box-shadow: 0 0 6px var(--aura-color); border-color: var(--body-color);
+}
+.screen-battle .battle-abilities .fighter-status-chip {
+  position: absolute; left: 8px; bottom: 2px; font-size: 8px; line-height: 10px;
+  color: #ffd1a3; background: #361912df; padding: 0 3px; border-radius: 3px;
+}
+.character-kit-review { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: 16px; }
+.character-kit-review > div { padding: 10px 12px; border-top: 1px solid #7d7453; background: #0e222666; border-radius: 5px; }
+.character-kit-review small { display: block; color: #adbbaf; font-size: 10px; }
+.character-kit-review strong { display: block; color: #e3c68e; font-size: 12px; margin-top: 4px; }
+.character-kit-review p { color: #c1d0c9; font-size: 11px; line-height: 1.7; margin: 5px 0 0; }
+@media (max-width: 600px) {
+  .character-kit-review { grid-template-columns: 1fr; gap: 6px; }
+  .screen-battle :is(.count-3, .count-4) .battle-abilities .ultimate-skill-name { font-size: 6px; line-height: 7px; }
+  .screen-battle :is(.count-3, .count-4) .battle-abilities .fighter-status-chip { left: 48%; bottom: 3px; font-size: 7px; line-height: 8px; }
+}

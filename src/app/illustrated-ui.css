@@ -1,0 +1,153 @@
+/* Generated paint only. Do not put layout, typography sizing, or hit-area rules here.
+ * Nine-slice border-image paints inside existing boxes without changing their borders.
+ * Character artwork, per-character HUD frames, and the arena canvas stay intact. */
+:root {
+  --ui-panel-art: url('/assets/ui/skin/panel-v1.png');
+  --ui-dark-art: url('/assets/ui/skin/buttonDark-v1.png');
+  --ui-gold-art: url('/assets/ui/skin/buttonGold-v1.png');
+  --ui-world-art: url('/assets/ui/skin/backdrop-v1.png');
+  --ui-victory-art: url('/assets/ui/skin/result-v1.png');
+}
+
+body {
+  background: #09191d var(--ui-world-art) center / cover fixed no-repeat;
+}
+.game-shell .masthead {
+  border-bottom-color: #b89a595c;
+  text-shadow: 0 2px 6px #061214;
+}
+.game-shell .masthead nav [aria-current] { color: #ffe4a4; }
+.game-shell .game-footer { text-shadow: 0 1px 4px #031113; color: #b0bcaf; }
+
+.game-shell .setup-flow .menu-hero {
+  background: linear-gradient(90deg, #071c2370, #071c2300 70%), var(--menu-art) center 46% / cover, #102328;
+  border-color: #bca16b;
+  box-shadow: inset 0 0 0 1px #dfc68d26, 0 8px 28px #0003;
+}
+.game-shell .hero-copy { text-shadow: 0 2px 8px #04161d; }
+.game-shell .setup-step-panel {
+  background: #102328;
+  border-image: var(--ui-panel-art) 14% fill / 22px / 0 stretch;
+}
+
+/* All controls retain their original native button, focus and keyboard behavior. */
+.game-shell :is(.game-secondary, .setup-tabs button, .count-options button) {
+  background: #123732;
+  border-image: var(--ui-dark-art) 22% 8% fill / 12px / 0 stretch;
+  color: #ebdfbf;
+  text-shadow: 0 1px 3px #061a17;
+}
+.game-shell :is(.game-primary, .setup-tabs button[aria-selected=true], .count-options button[aria-pressed=true]) {
+  background: #dfc58c;
+  border-image: var(--ui-gold-art) 20% 7% fill / 12px / 0 stretch;
+  color: #202c26;
+  text-shadow: 0 1px 1px #fff5d366;
+}
+.game-shell .setup-tabs button[aria-selected=true] span { color: #35402d; }
+.game-shell .setup-tabs button:not([aria-selected=true]) span { color: #d0b980; }
+.game-shell :is(.game-primary, .game-secondary, .setup-tabs button, .count-options button):focus-visible {
+  outline: 2px solid #fff0bc;
+  outline-offset: 3px;
+}
+.game-shell :is(.game-primary, .game-secondary, .setup-tabs button, .count-options button):disabled {
+  filter: saturate(.25) brightness(.65);
+}
+@media (hover: hover) {
+  .game-shell :is(.game-primary, .game-secondary, .setup-tabs button, .count-options button):enabled:hover {
+    filter: brightness(1.12);
+  }
+}
+.game-shell .setup-flow .arena-choice {
+  background: #102328;
+  border-image: var(--ui-panel-art) 14% fill / 14px / 0 stretch;
+}
+.game-shell .setup-flow .arena-choice[aria-pressed=true] {
+  box-shadow: inset 0 0 0 2px #eac97e, 0 0 14px #d1ad5e24;
+  outline: 2px solid #eac97e;
+  outline-offset: -3px;
+}
+.game-shell .setup-flow .arena-choice:focus-visible { outline-offset: 3px; }
+.game-shell .arena-choice[aria-pressed=true] .arena-choice-copy strong { color: #ffe4a4; }
+.game-shell .arena-miniature { border-color: #bca16b; }
+
+.game-shell .selection-fighter { position: relative; isolation: isolate; border-color: #8f7f58; }
+.game-shell .selection-fighter::after {
+  content: ''; position: absolute; inset: 0; z-index: 3; pointer-events: none;
+  border: 1px solid transparent;
+  border-image: var(--ui-panel-art) 14% / 14px / 0 stretch;
+}
+.game-shell .selection-fighter.active { box-shadow: 0 0 0 1px #e5c784, 0 0 22px #c19c5126; }
+.game-shell .selection-fighter-controls {
+  background: #173930 var(--ui-dark-art) center / 100% 100% no-repeat;
+  border-bottom-color: #b79a63;
+}
+/* The opaque inner edge of the frame used to cover the top of Thai side labels.
+   Lift only the live controls above that decorative paint, without moving them. */
+.game-shell .selection-fighter-controls > button { position: relative; z-index: 4; }
+.game-shell .selection-fighter.active .selection-fighter-controls {
+  background: #173930 var(--ui-dark-art) center / 100% 100% no-repeat;
+  box-shadow: inset 0 -2px #e8c986;
+}
+.game-shell .selection-catalogue > button {
+  position: relative;
+  background: #12302d var(--ui-dark-art) center / 100% 100% no-repeat;
+  border-color: #8c805c;
+}
+.game-shell .selection-catalogue > button[aria-pressed=true] {
+  border-color: #f6da94;
+  box-shadow: 0 0 0 1px #eacb8b, 0 0 14px #c9a45733;
+}
+.game-shell .selection-arrow { text-shadow: 0 1px 5px #091a19; }
+.game-shell .selection-arrow:hover { background-color: #dbc38921; }
+.game-shell .selection-kit { border-top-color: #a58b525c; }
+.game-shell .character-kit-review > div {
+  background-color: #102328;
+  border-image: var(--ui-panel-art) 14% fill / 12px / 0 stretch;
+}
+.game-shell .confirm-lineup .character-portrait {
+  border-color: #e1c083;
+  box-shadow: 0 0 0 2px #71623b, 0 0 24px #b7965130;
+}
+
+/* Paint around the existing arena, never over its interactive canvas or HUD. */
+.game-shell.screen-battle {
+  background: linear-gradient(#0e252ce8, #0a1b22e8), var(--ui-world-art) center / cover;
+  border-inline-color: #a68e5f;
+}
+.game-shell.screen-battle .battle-heading { text-shadow: 0 1px 5px #020f12; }
+.game-shell.screen-battle .battle-stage {
+  background: #0c2025 var(--ui-world-art) center / cover;
+  border-image: var(--ui-panel-art) 14% / 8px / 0 stretch;
+}
+.game-shell.screen-battle .battle-controls .game-primary,
+.game-shell.screen-battle .battle-controls .game-secondary { border-image-width: 10px; }
+
+.game-shell .result-screen {
+  border-image: var(--ui-panel-art) 14% / 24px / 0 stretch;
+  background-color: #0b2024;
+  box-shadow: 0 14px 60px #0005;
+}
+.game-shell .result-screen::before {
+  background: linear-gradient(#071c2138, #071c2148 45%, #071c21ed 78%), var(--ui-victory-art) center 38% / cover no-repeat;
+}
+.game-shell .result-screen h1,
+.game-shell .result-subtitle,
+.game-shell .result-identity,
+.game-shell .result-facts { text-shadow: 0 2px 8px #021317, 0 1px 3px #021317; }
+.game-shell .result-roster > div {
+  background: #102328;
+  border-image: var(--ui-panel-art) 14% fill / 12px / 0 stretch;
+}
+.portrait-guard {
+  background: linear-gradient(#091c22aa, #091c22e8), var(--ui-world-art) center / cover;
+}
+
+@media (max-width: 650px) {
+  .game-shell .setup-step-panel { border-image-width: 15px; }
+  .game-shell .selection-fighter::after { border-image-width: 10px; }
+  .game-shell .result-screen { border-image-width: 16px; }
+}
+@media (forced-colors: active) {
+  .game-shell :is(button, .setup-step-panel, .result-screen, .result-roster > div, .battle-stage) { border-image: none; }
+  .game-shell .selection-fighter::after { display: none; }
+}
