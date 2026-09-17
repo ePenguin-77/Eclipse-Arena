@@ -1,5 +1,6 @@
+import {assetUrl} from './asset-url';
 // Assets used by the playable roster and presentation.
-export const VISUAL_ASSETS: Readonly<Record<string,string>> = {
+const ASSET_PATHS: Readonly<Record<string,string>> = {
   "masks-portrait-v1": "/assets/characters/masks/masks-portrait-v1.png",
   "masks-frame-v1": "/assets/ui/masks-frame-v1.png",
   "masks-hud-scene-v1": "/assets/ui/scenes/masks-hud-scene-v1.png",
@@ -257,3 +258,4 @@ export const VISUAL_ASSETS: Readonly<Record<string,string>> = {
   "jade-seal-v1": "/assets/arenas/jade-seal-v1.png",
   "palm-atlas-v1": "/assets/vfx/palm-atlas-v1.png"
 };
+export const VISUAL_ASSETS: Readonly<Record<string,string>> = Object.fromEntries(Object.entries(ASSET_PATHS).map(([id,url]) => [id,assetUrl(url)]));

@@ -2,6 +2,8 @@
 
 An auto-battle arena where mystical warriors clash with unique skills and powerful ultimates. Watch up to four fighters bounce, collide, and turn the tide of battle.
 
+**[Play Eclipse Arena](https://epenguin-77.github.io/Eclipse-ArenaEclipse-ArenaEclipse-Arena/)**
+
 ## Play locally
 
 Requires Node.js 22.12+ and npm.
@@ -22,7 +24,7 @@ npm run build
 npm run preview
 ```
 
-The generated `dist/` directory can be hosted by a static web server at its domain root. No backend or environment secrets are required. Uploading this repository does not automatically configure a hosted website.
+The generated `dist/` directory can be hosted by a static web server at its domain root. No backend or environment secrets are required. The GitHub Actions workflow builds and publishes GitHub Pages automatically on pushes to `main`, with the correct repository path for scripts, styles and artwork.
 
 ## Project layout
 
