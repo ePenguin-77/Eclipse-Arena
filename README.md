@@ -2,7 +2,7 @@
 
 An auto-battle arena where mystical warriors clash with unique skills and powerful ultimates. Watch up to four fighters bounce, collide, and turn the tide of battle.
 
-**[Play Eclipse Arena](https://epenguin-77.github.io/Eclipse-ArenaEclipse-ArenaEclipse-Arena/)**
+**[Play Eclipse Arena](https://epenguin-77.github.io/Eclipse-Arena/)**
 
 ## Play locally
 

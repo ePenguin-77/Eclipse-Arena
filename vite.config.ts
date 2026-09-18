@@ -1,5 +1,5 @@
 import {defineConfig} from 'vite';
 
 export default defineConfig({
-  base: process.env.GITHUB_PAGES === 'true' ? '/Eclipse-ArenaEclipse-ArenaEclipse-Arena/' : '/',
+  base: process.env.GITHUB_PAGES === 'true' ? '/Eclipse-Arena/' : '/',
 });
